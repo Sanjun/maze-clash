@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Maze Clash — Prototype</title>
+  <style>
+    html,body { height:100%; margin:0; background:#0b0f14; color:#fff; font-family:Arial, sans-serif; }
+    #gameWrap { display:flex; flex-direction:column; height:100vh; }
+    #statusBar { background:#111827; text-align:center; padding:10px 8px; font-size:16px; color:#fff; box-shadow: inset 0 -1px 0 rgba(255,255,255,0.02); }
+    #statusSmall { font-size:13px; color:#9aa; margin-top:4px; }
+
+    #canvasWrap { flex:1; display:flex; align-items:center; justify-content:center; background:#0a0b0f; padding:8px; box-sizing:border-box; }
+    canvas { image-rendering: pixelated; background:transparent; }
+
+    #controls { background:linear-gradient(180deg, rgba(0,0,0,0.32), rgba(0,0,0,0.62)); padding:12px; display:flex; flex-direction:column; align-items:center; gap:12px; }
+    #directional { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+    .dir-btn { background:#1f2937; color:#fff; border:2px solid rgba(255,255,255,0.06); padding:12px 18px; font-size:18px; border-radius:8px; min-width:64px; cursor:pointer; user-select:none; }
+    .dir-btn:active { transform:translateY(1px); }
+
+    #btnFind { background:#0b84ff; border:none; padding:10px 14px; border-radius:8px; color:#fff; font-weight:600; cursor:pointer; }
+
+    #adSpace { height:72px; display:flex; align-items:center; justify-content:center; color:#666; font-size:13px; border-top:1px dashed rgba(255,255,255,0.03); background:transparent; }
+
+    @media (max-width:600px) {
+      .dir-btn { min-width:52px; padding:10px 14px; font-size:16px; }
+      #adSpace { height:56px; }
+    }
+  </style>
+</head>
+<body>
+  <div id="gameWrap">
+    <div id="statusBar">
+      <div id="statusMain">Connecting...</div>
+      <div id="statusSmall">Automatic matchmaking — open another tab to play</div>
+    </div>
+
+    <div id="canvasWrap">
+      <!-- canvas will be sized by client script -->
+      <canvas id="gameCanvas"></canvas>
+    </div>
+
+    <div id="controls">
+      <div id="directional">
+        <button class="dir-btn" data-dir="up">▲</button>
+        <button class="dir-btn" data-dir="down">▼</button>
+        <button class="dir-btn" data-dir="left">◀</button>
+        <button class="dir-btn" data-dir="right">▶</button>
+      </div>
+
+      <button id="btnFind">Find Match</button>
+    </div>
+
+    <div id="adSpace">(Ad space reserved)</div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>
